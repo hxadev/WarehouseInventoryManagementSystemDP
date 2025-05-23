@@ -1,6 +1,7 @@
 package com.dgtic.unam;
 
 import com.dgtic.unam.configuration.AppConfigSingleton;
+import com.dgtic.unam.configuration.AuditServiceSingleton;
 import com.dgtic.unam.controller.InventoryController;
 import com.dgtic.unam.core.constants.OrderType;
 import com.dgtic.unam.core.factory.ExpressShippingFactory;
@@ -19,6 +20,7 @@ import java.util.*;
  * @author hxa.dev
  */
 public class Main {
+
     /**
      * Main method to start the application.
      *
@@ -32,6 +34,7 @@ public class Main {
      * Starts the application by loading configurations, products, and displaying the main menu.
      */
     public static void startApp() {
+
         printHeader();
         loadConfigurations();
         Map<Integer, Product> products = loadProducts();
@@ -48,6 +51,7 @@ public class Main {
         System.out.println("=============================================");
         System.out.println("Welcome to the Inventory Management System");
         System.out.println("=============================================");
+        AuditServiceSingleton.getInstance().log("User", "printHeader", "Displayed header");
     }
 
     /**

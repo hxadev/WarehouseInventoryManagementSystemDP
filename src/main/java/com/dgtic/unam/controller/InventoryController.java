@@ -1,5 +1,6 @@
 package com.dgtic.unam.controller;
 
+import com.dgtic.unam.configuration.AuditServiceSingleton;
 import com.dgtic.unam.core.constants.OrderType;
 import com.dgtic.unam.entity.Order;
 import com.dgtic.unam.facade.InventoryFacade;
@@ -28,14 +29,13 @@ public class InventoryController {
     /**
      * Places an order using the InventoryFacade.
      *
-     * @param order      The order to be placed.
-     * @param orderType  The type of the order (e.g., online, in-store).
+     * @param order     The order to be placed.
+     * @param orderType The type of the order (e.g., online, in-store).
      */
     public void placeOrder(Order order, OrderType orderType) {
         // Here you would typically convert the orderId and orderType to the appropriate types
         // and create an Order object. For simplicity, we'll just print them.
-        System.out.println("Placing order with ID: " + order + " of type: " + orderType);
-
+        AuditServiceSingleton.getInstance().log("User", "placeOrder", "Placing order with ID: " + order.getOrderId() + " of type: " + orderType);
         // Call the facade to place the order
         inventoryFacade.placeOrder(order, orderType);
     }
